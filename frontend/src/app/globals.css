@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --background: #080D0A;
+  --foreground: #E7F0E9;
+  --crt-green: #00FF66;
+  --crt-amber: #FFB000;
+  --crt-red: #FF4444;
+  --crt-cyan: #00E5FF;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  overflow-x: hidden;
+}
+
+/* CRT Scanlines Overlay */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.35) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  z-index: 9999;
+  opacity: 0.85;
+}
+
+/* CRT Glow and Screen Vignette */
+.crt-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 255, 102, 0.05);
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Subtle CRT Flicker */
+@keyframes crt-flicker {
+  0% { opacity: 0.99; }
+  50% { opacity: 1; }
+  52% { opacity: 0.97; }
+  54% { opacity: 1; }
+  80% { opacity: 0.98; }
+  100% { opacity: 0.99; }
+}
+
+.crt-flicker {
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* Glitch Text Effect */
+@keyframes text-glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(2px, 1px); }
+  80% { transform: translate(1px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.glitch-active {
+  animation: text-glitch 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  text-shadow: 2px 0 rgba(255, 0, 0, 0.6), -2px 0 rgba(0, 229, 255, 0.6);
+}
+
+/* Custom Cyber Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1410;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1b3523;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff66;
+}
