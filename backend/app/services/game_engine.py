@@ -11,6 +11,7 @@ from app.models.game_schemas import (
     EvidenceItem,
     CaseDossier,
     InterrogateResponse,
+    IndictmentRequest,
     IndictmentResponse
 )
 
