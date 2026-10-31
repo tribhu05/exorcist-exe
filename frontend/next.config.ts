@@ -18,6 +18,22 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async rewrites() {
+    if (isGithubPages) return [];
+    const backendTarget =
+      process.env.BACKEND_URL ||
+      (process.env.BACKEND_HOST ? `http://${process.env.BACKEND_HOST}:8000` : "http://127.0.0.1:8000");
+    return [
+      {
+        source: "/api/game/:path*",
+        destination: `${backendTarget}/api/game/:path*`,
+      },
+      {
+        source: "/api/status",
+        destination: `${backendTarget}/api/status`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
