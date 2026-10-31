@@ -2,6 +2,7 @@
 title: "EXORCIST.EXE: The Ghost in the Machine — An Air-Gapped Cyber-Noir OS Murder Mystery Game"
 published: true
 tags: devchallenge, hf26challenge, hacktoberfest, opensource
+cover_image: https://raw.githubusercontent.com/tribhu05/exorcist-exe/master/docs/banner.png
 description: "At 03:42:19 UTC, PID 1 was murdered. An open-weight AI cyber-noir detective game running 100% offline and air-gapped on your laptop."
 ---
 

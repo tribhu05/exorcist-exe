@@ -36,6 +36,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# Demo recording video
+docs/demo_recording/
+*.webm
+*.mp4
+
 # Environment
 .env
 .env.local

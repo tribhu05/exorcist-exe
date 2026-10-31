@@ -7,12 +7,13 @@ def record_exorcist_demo():
     output_dir = os.path.join(os.path.dirname(__file__), "demo_recording")
     os.makedirs(output_dir, exist_ok=True)
 
-    print("=" * 60)
-    print(">> EXORCIST.EXE // AUTOMATED CINEMATIC DEMO RECORDER")
-    print(f">> Output Directory: {output_dir}")
-    print("=" * 60)
+    print("=" * 60, flush=True)
+    print(">> EXORCIST.EXE // AUTOMATED CINEMATIC DEMO RECORDER", flush=True)
+    print(f">> Output Directory: {output_dir}", flush=True)
+    print("=" * 60, flush=True)
 
     with sync_playwright() as p:
+        print(">> Launching Chromium browser...", flush=True)
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(
             record_video_dir=output_dir,
@@ -23,132 +24,130 @@ def record_exorcist_demo():
         page = context.new_page()
 
         # Step 1: Navigate to Live Deployment
-        print("[0:00 - 0:15] Booting Crime Lab HUD...")
-        page.goto("https://tribhu05.github.io/exorcist-exe/", wait_until="networkidle")
-        page.wait_for_timeout(4000)
+        print("[0:00 - 0:15] Booting Crime Lab HUD...", flush=True)
+        page.goto("https://tribhu05.github.io/exorcist-exe/", wait_until="domcontentloaded", timeout=30000)
+        page.wait_for_timeout(3500)
 
-        # Step 2: Hover and inspect briefing strip
-        print("[0:15 - 0:30] Surveying Crime Scene & Dossier...")
-        page.mouse.move(300, 200)
-        page.wait_for_timeout(2000)
-        page.mouse.move(960, 200)
-        page.wait_for_timeout(2000)
+        # Step 2: Survey Crime Scene & Dossier
+        print("[0:15 - 0:30] Surveying Crime Scene & Dossier...", flush=True)
+        page.mouse.move(400, 150)
+        page.wait_for_timeout(1500)
+        page.mouse.move(960, 150)
+        page.wait_for_timeout(1500)
 
         # Step 3: Browse Suspect Daemons
-        print("[0:30 - 0:50] Inspecting Detained Suspect Daemons...")
-        suspect_buttons = page.locator("button:has-text('systemd'), button:has-text('GarbageCollector'), button:has-text('CronDaemon'), button:has-text('Daemon 666')")
-        
-        # Click systemd
-        page.click("text=systemd (PID 1 Supervisor)")
-        page.wait_for_timeout(2500)
-
-        # Click GarbageCollector
-        page.click("text=GarbageCollector (GC)")
-        page.wait_for_timeout(2500)
-
-        # Click CronDaemon
-        page.click("text=CronDaemon (crond)")
-        page.wait_for_timeout(2500)
-
-        # Click Daemon 666
-        page.click("text=Daemon 666 (The Phantom Socket)")
-        page.wait_for_timeout(3000)
+        print("[0:30 - 0:50] Inspecting Detained Suspect Daemons...", flush=True)
+        try:
+            page.locator("text=systemd").first.click(timeout=5000)
+            page.wait_for_timeout(2000)
+            page.locator("text=GarbageCollector").first.click(timeout=5000)
+            page.wait_for_timeout(2000)
+            page.locator("text=CronDaemon").first.click(timeout=5000)
+            page.wait_for_timeout(2000)
+            page.locator("text=Daemon 666").first.click(timeout=5000)
+            page.wait_for_timeout(2500)
+        except Exception as e:
+            print(f"Warning during suspect browse: {e}", flush=True)
 
         # Step 4: Inspect Evidence Locker
-        print("[0:50 - 1:10] Inspecting Forensic Evidence Locker...")
-        # Scroll down to Evidence section
-        page.evaluate("window.scrollBy({ top: 400, behavior: 'smooth' })")
-        page.wait_for_timeout(2000)
+        print("[0:50 - 1:15] Inspecting Forensic Evidence Locker...", flush=True)
+        page.evaluate("window.scrollBy({ top: 350, behavior: 'smooth' })")
+        page.wait_for_timeout(1500)
 
-        # View Syslog
-        page.click("text=Corrupted Syslog (/var/log/syslog)")
-        page.wait_for_timeout(3000)
+        try:
+            # Click Corrupted Syslog
+            page.locator("button:has-text('Corrupted Syslog')").first.click(timeout=5000)
+            page.wait_for_timeout(2500)
 
-        # View Core Dump
-        page.click("text=Stack Memory Hex Dump (core.dump)")
-        page.wait_for_timeout(3000)
+            # Click Stack Memory Hex Dump
+            page.locator("button:has-text('Stack Memory Hex Dump')").first.click(timeout=5000)
+            page.wait_for_timeout(2500)
 
-        # Click Confront Suspect with this Evidence button if visible
-        confront_btn = page.locator("button:has-text('CONFRONT SUSPECT WITH THIS EVIDENCE')")
-        if confront_btn.is_visible():
-            confront_btn.click()
-            page.wait_for_timeout(2000)
+            # Click Confront with Clue button
+            confront_btn = page.locator("button:has-text('WITH THIS CLUE')").first
+            if confront_btn.is_visible():
+                confront_btn.click()
+                print(">> Confronted Daemon 666 with core.dump clue!", flush=True)
+                page.wait_for_timeout(3000)
+        except Exception as e:
+            print(f"Warning during evidence locker: {e}", flush=True)
 
         # Step 5: Interrogation Room
-        print("[1:10 - 1:35] Confronting Daemon 666 in Interrogation Room...")
-        page.evaluate("window.scrollTo({ top: 350, behavior: 'smooth' })")
+        print("[1:15 - 1:35] Interrogation Room Confrontation & Tension...", flush=True)
+        page.evaluate("window.scrollTo({ top: 150, behavior: 'smooth' })")
         page.wait_for_timeout(1500)
 
-        # Type question with human typing speed
-        input_box = page.locator("input[placeholder*='Question'], input[placeholder*='Ask'], input[type='text']")
-        if input_box.is_visible():
-            input_box.click()
-            question = "Explain the 0xDEADBEEF signature in this core dump!"
-            for char in question:
-                page.keyboard.type(char, delay=35)
-                time.sleep(0.01)
-            page.wait_for_timeout(1000)
-            page.keyboard.press("Enter")
-            print(">> Sent confrontation message! Waiting for Daemon 666 tension reaction...")
-            page.wait_for_timeout(7000)
+        try:
+            input_box = page.locator("input[placeholder*='Question'], input[placeholder*='interrogate'], input[type='text']").first
+            if input_box.is_visible():
+                input_box.click()
+                question = "Explain the 0xDEADBEEF signature in this core dump!"
+                for char in question:
+                    page.keyboard.type(char, delay=25)
+                page.wait_for_timeout(500)
+                page.keyboard.press("Enter")
+                print(">> Sent question! Waiting for tension & glitch reaction...", flush=True)
+                page.wait_for_timeout(6000)
+        except Exception as e:
+            print(f"Warning during interrogation: {e}", flush=True)
 
         # Step 6: Execute Exorcism Indictment
-        print("[1:35 - 1:55] Executing Terminal Exorcism Indictment...")
-        # Scroll to top to see Navbar
+        print("[1:35 - 1:52] Executing Terminal Exorcism Indictment...", flush=True)
         page.evaluate("window.scrollTo({ top: 0, behavior: 'smooth' })")
-        page.wait_for_timeout(1500)
+        page.wait_for_timeout(1000)
 
-        page.click("button:has-text('EXECUTE EXORCISM')")
-        page.wait_for_timeout(2000)
+        try:
+            # Click Navbar Exorcise & Indict button
+            page.locator("button:has-text('EXORCISE & INDICT')").click(timeout=5000)
+            page.wait_for_timeout(2000)
 
-        # Select suspect radio in modal
-        phantom_radio = page.locator("input[value='phantom_socket'], label:has-text('Daemon 666')")
-        if phantom_radio.is_visible():
-            phantom_radio.click()
+            # Click Daemon 666 suspect button inside modal
+            daemon_btn = page.locator("div[role='dialog'] button:has-text('Daemon 666'), .fixed button:has-text('Daemon 666')").first
+            if daemon_btn.is_visible():
+                daemon_btn.click()
+                page.wait_for_timeout(1000)
+
+            # Fill command input or click preset
+            preset_btn = page.locator("button:has-text('kill -9 666')").first
+            if preset_btn.is_visible():
+                preset_btn.click()
+            else:
+                cmd_input = page.locator("input[placeholder*='kill']").first
+                if cmd_input.is_visible():
+                    cmd_input.click()
+                    cmd_input.fill("kill -9 666")
             page.wait_for_timeout(1000)
 
-        # Fill murder weapon input
-        weapon_input = page.locator("input[placeholder*='Buffer'], input[placeholder*='overflow'], input[placeholder*='exploit']").first
-        if weapon_input.is_visible():
-            weapon_input.click()
-            for char in "Stack Buffer Overflow / Smashing with 0xDEADBEEF":
-                page.keyboard.type(char, delay=30)
-            page.wait_for_timeout(1000)
-
-        # Fill command input
-        cmd_input = page.locator("input[placeholder*='kill'], input[placeholder*='command'], input[placeholder*='sysctl']").first
-        if cmd_input.is_visible():
-            cmd_input.click()
-            for char in "kill -9 666":
-                page.keyboard.type(char, delay=40)
-            page.wait_for_timeout(1000)
-
-        # Click Execute Exorcism button in modal
-        exec_btn = page.locator("button:has-text('EXECUTE TERMINAL EXORCISM')")
-        if exec_btn.is_visible():
-            exec_btn.click()
-            print(">> Exorcism Executed! Capturing verdict screen...")
-            page.wait_for_timeout(8000)
+            # Click Execute button in modal
+            exec_btn = page.locator("button:has-text('EXECUTE EXORCISM INDICTMENT')").first
+            if exec_btn.is_visible():
+                exec_btn.click()
+                print(">> Exorcism Executed! Capturing verdict screen...", flush=True)
+                page.wait_for_timeout(7000)
+        except Exception as e:
+            print(f"Warning during indictment: {e}", flush=True)
 
         # Step 7: Outro hold
-        print("[1:55 - 2:00] Final Scene Hold...")
-        page.wait_for_timeout(5000)
+        print("[1:52 - 2:00] Final Scene Hold...", flush=True)
+        page.wait_for_timeout(4000)
 
-        # Close page and context to finalize video
+        # Save video properly before closing context
+        video_obj = page.video
         page.close()
-        video_path = page.video.path() if page.video else None
+        video_path = video_obj.path() if video_obj else None
         context.close()
         browser.close()
 
-    print("=" * 60)
-    print(f">> DEMO RECORDING COMPLETE!")
+    print("=" * 60, flush=True)
+    print(">> DEMO RECORDING COMPLETE!", flush=True)
     if video_path and os.path.exists(video_path):
         final_mp4 = os.path.join(output_dir, "exorcist_2min_demo.webm")
         if os.path.exists(final_mp4):
             os.remove(final_mp4)
         os.rename(video_path, final_mp4)
-        print(f">> Saved high-definition demo video to: {final_mp4}")
-    print("=" * 60)
+        file_size_mb = os.path.getsize(final_mp4) / (1024 * 1024)
+        print(f">> Saved high-definition demo video to: {final_mp4} ({file_size_mb:.2f} MB)", flush=True)
+    print("=" * 60, flush=True)
 
 if __name__ == "__main__":
     record_exorcist_demo()
