@@ -3,6 +3,14 @@
 > **Hacktoberfest 2026 Week 4 Official Submission: "Ghost in the Machine"**  
 > *Theme: Open-Source AI, Local & Offline Innovation, Zero-Telemetry Data Privacy.*
 
+[![Live Web Demo](https://img.shields.io/badge/PLAY_LIVE-GITHUB_PAGES-00ff66?style=for-the-badge&logo=github&logoColor=black)](https://tribhu05.github.io/exorcist-exe/)
+[![CI](https://github.com/tribhu05/exorcist-exe/actions/workflows/ci.yml/badge.svg)](https://github.com/tribhu05/exorcist-exe/actions/workflows/ci.yml)
+[![Deploy to GitHub Pages](https://github.com/tribhu05/exorcist-exe/actions/workflows/deploy.yml/badge.svg)](https://github.com/tribhu05/exorcist-exe/actions/workflows/deploy.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/tribhu05/exorcist-exe)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/tribhu05/exorcist-exe)
+
 ```
   ______   _____   _____   _____ _____ _____ _______   ________   ________ 
  |  ____| \ \ / / / ____| / ____|_   _/ ____|__   __| |  ____\ \ / /  ____|
@@ -12,6 +20,14 @@
  |______| /_/ \_\ \_____|_____/|_____|_____/   |_|(_) |______/_/ \_\______|
   >> CYBER-NOIR OS FORENSICS << CASE #1031: THE MURDER OF PID 1
 ```
+
+---
+
+## 🎮 Play Instantly Online
+You can play the full forensic investigation right now in your browser without installing anything:
+👉 **[Launch Forensic Console (Live Demo)](https://tribhu05.github.io/exorcist-exe/)**
+
+Featuring complete CRT phosphor scanlines, procedural audio synthesis, four suspect interrogations, evidence confrontation, and the final Exorcism Indictment trial.
 
 ---
 
