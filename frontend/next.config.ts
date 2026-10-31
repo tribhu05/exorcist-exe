@@ -20,9 +20,18 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     if (isGithubPages) return [];
-    const backendTarget =
-      process.env.BACKEND_URL ||
-      (process.env.BACKEND_HOST ? `http://${process.env.BACKEND_HOST}:8000` : "http://127.0.0.1:8000");
+    const rawTarget = process.env.BACKEND_URL || process.env.BACKEND_HOST;
+    let backendTarget = "http://127.0.0.1:8000";
+    if (rawTarget) {
+      if (rawTarget.startsWith("http://") || rawTarget.startsWith("https://")) {
+        backendTarget = rawTarget.replace(/\/$/, "");
+      } else if (rawTarget.includes(":")) {
+        backendTarget = `http://${rawTarget}`;
+      } else {
+        const port = process.env.BACKEND_PORT || "10000";
+        backendTarget = `http://${rawTarget}:${port}`;
+      }
+    }
     return [
       {
         source: "/api/game/:path*",

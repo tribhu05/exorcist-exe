@@ -6,6 +6,7 @@ services:
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /healthz
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
@@ -20,7 +21,7 @@ services:
     plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
-    startCommand: npm start
+    startCommand: npm start -- -H 0.0.0.0 -p $PORT
     envVars:
       - key: NODE_VERSION
         value: 20
@@ -28,4 +29,4 @@ services:
         fromService:
           type: web
           name: exorcist-backend
-          property: host
+          property: hostport
