@@ -23,9 +23,12 @@
 
 ---
 
-## 🎮 Play Instantly Online
-You can play the full forensic investigation right now in your browser without installing anything:
-👉 **[Launch Forensic Console (Live Demo)](https://tribhu05.github.io/exorcist-exe/)**
+## 🎮 Play Instantly Online & Watch Demo
+* 👉 **[Launch Forensic Console (Live Demo on GitHub Pages)](https://tribhu05.github.io/exorcist-exe/)**
+* 📺 **[Watch 2-Minute Cinematic Demo Video (YouTube)](https://youtu.be/7lLuG9szKVY)**
+
+[![Watch the Demo Video](https://img.shields.io/badge/YOUTUBE-DEMO_VIDEO-ff0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/7lLuG9szKVY)
+[![Live Web Demo](https://img.shields.io/badge/PLAY_LIVE-GITHUB_PAGES-00ff66?style=for-the-badge&logo=github&logoColor=black)](https://tribhu05.github.io/exorcist-exe/)
 
 Featuring complete CRT phosphor scanlines, procedural audio synthesis, four suspect interrogations, evidence confrontation, and the final Exorcism Indictment trial.
 
