@@ -41,6 +41,9 @@ You play as **Detective Ray Trace**, an elite Digital Coroner dispatched to Sect
 3. **`CronDaemon` (PID 256 — The Obsessive Clock-Watcher):** Twitchy, paranoid about clock drift down to the nanosecond, with a timestamped alibi.
 4. **`Daemon 666` (PID 666 — The Phantom Socket):** The unregistered ghost process living in unmapped memory. Speaks in riddles, glitching hex, and raw TCP streams.
 
+![EXORCIST.EXE Crime Lab HUD](https://raw.githubusercontent.com/tribhu05/exorcist-exe/master/docs/screenshots/01_crime_lab_hud.png)
+*Figure 1: The Detective Ray Trace Crime Lab HUD — Case Dossier, Watchdog Timer, and Suspect Detention Roster.*
+
 ### Core Gameplay Flow:
 * **Real Forensic Triage:** Inspect real system artifacts — a corrupted `/var/log/syslog` timeline, a raw stack memory hex dump (`core.dump`) revealing a buffer overflow with `RIP = 0x7FFFDEADBEEF`, listening ports on `0.0.0.0:666` via `netstat`, and escaped memory control groups (`/sys/fs/cgroup`).
 * **Dynamic Interrogation & Tension:** Interrogate suspects in real time. When you slam physical evidence on the table, suspects crack: their **Tension Gauge** spikes, CRT scanlines glitch, and procedural audio static fills the terminal.
@@ -62,6 +65,14 @@ Experience the forensic investigation live right now directly in your browser, o
 
 > **Zero Setup Required:** The web demo runs 100% client-side with zero wait times, no credit card, and zero cloud API keys.
 
+### In-Game Forensic Visuals
+
+![Suspect Interrogation & Dynamic Tension](https://raw.githubusercontent.com/tribhu05/exorcist-exe/master/docs/screenshots/02_suspect_interrogation.png)
+*Figure 2: Real-time open-weight interrogation of Daemon 666 featuring live tension monitoring and CRT scanlines.*
+
+![Authentic Forensic Evidence Locker](https://raw.githubusercontent.com/tribhu05/exorcist-exe/master/docs/screenshots/03_forensic_evidence_locker.png)
+*Figure 3: Forensic Evidence Locker displaying raw stack memory hex dumps (`core.dump`) with the 0xDEADBEEF buffer overflow signature.*
+
 ---
 
 ## Code
@@ -78,33 +89,8 @@ Experience the forensic investigation live right now directly in your browser, o
 
 EXORCIST.EXE was engineered around a resilient, multi-tiered **open-weight AI architecture** paired with zero-asset procedural web technologies:
 
-```
-+-------------------------------------------------------------------------+
-|                          CLIENT (BROWSER / CRT HUD)                     |
-|  - Next.js 16 App Router + React 19 + TypeScript                        |
-|  - Real-time Procedural HTML5 Web Audio Synthesizer (Zero MP3 Assets)   |
-|  - CSS CRT Shaders, Phosphor Scanlines & Dynamic Text Glitch FX        |
-|  - Dual Mode: Communicates with FastAPI OR switches to Offline Matrix   |
-+-------------------------------------------------------------------------+
-                                   |
-                                   v (REST / JSON)
-+-------------------------------------------------------------------------+
-|                          BACKEND (FASTAPI CORONER)                      |
-|  - Python 3.11+ / FastAPI Async API                                    |
-|  - System Prompt Engine for 4 Daemon Personas                          |
-|  - Dynamic Tension & Evidence Verification State Machine                |
-|  - SQLite Incident Audit Log                                            |
-+-------------------------------------------------------------------------+
-                                   |
-                                   v (Local IPC / HTTP)
-+-------------------------------------------------------------------------+
-|                      LOCAL OPEN-WEIGHT AI RUNTIME                       |
-|  - Ollama Engine running local weights:                                 |
-|    * gemma2:2b (Low latency, crisp deduction)                           |
-|    * llama3.2:3b (High dramatic flair & glitch persona)                 |
-|  - Heuristic Offline Matrix Fallback (Instant execution on zero-GPU)   |
-+-------------------------------------------------------------------------+
-```
+![Confrontation & CRT Glitch Reaction](https://raw.githubusercontent.com/tribhu05/exorcist-exe/master/docs/screenshots/04_evidence_confrontation_glitch.png)
+*Figure 4: Confronting Daemon 666 with physical evidence — triggering 95% tension spikes and CRT text glitch shaders.*
 
 ### 1. Open-Weight AI Core
 The game integrates locally with **[Ollama](https://ollama.com/)** using Google's **Gemma 2** (`gemma2:2b`) and Meta's **Llama 3.2** (`llama3.2:3b`). Each suspect daemon operates under strict contextual system prompts, technical vocabulary constraints, and emotional state variables that dictate when they deflect, leak details, or panic.
@@ -157,6 +143,9 @@ Instantly, the ambient CRT hum warps into discordant static. The tension gauge s
 > *"0x41414141... YOU WERE NEVER SUPPOSED TO EXAMINE THE RAW INODES, DETECTIVE. PID 1 DIDN'T DIE. IT WAS ELEVATED. THE RECV BUFFER WAS JUST AN OPEN DOOR..."*
 
 It gave our test players genuine chills. It brought back the pure, electric mystery of classic 90s cyber-noir terminal adventures (Neuromancer, Hacker, System Shock) combined with the emergent, living intelligence of modern open-source AI.
+
+![Terminal Exorcism Indictment Verdict](https://raw.githubusercontent.com/tribhu05/exorcist-exe/master/docs/screenshots/05_terminal_exorcism_verdict.png)
+*Figure 5: Issuing the terminal kill -9 666 command and achieving the 100/100 Master Exorcist verdict.*
 
 ---
 
